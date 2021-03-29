@@ -1,0 +1,81 @@
+# serverless.yml
+service: amilegit
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dynamodb-local
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["ExpansionsDynamoDBTable", "Arn" ] }
+  environment:
+    EXPANSIONS_TABLE: ${self:custom.tableName}
+    APP_LOGLEVEL: 'info'
+    STAGE: '${self:custom.stageName}'
+  apiGateway:
+    shouldStartNameWithService: true
+
+custom:
+  stageName: ${opt:stage, self:provider.stage}
+  tableName: 'expansions-table-${opt:stage, self:provider.stage}'
+  dynamodb:
+    # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+    # Uncomment only if you already have a DynamoDB running locally
+    # noStart: true
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: '{proxy+}'
+          method: get
+          cors: true
+  create:
+    handler: index.handler
+    events:
+      - http:
+          path: create
+          method: post
+
+resources:
+  Resources:
+    ExpansionsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: url
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: url
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}

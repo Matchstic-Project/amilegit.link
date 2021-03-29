@@ -1,0 +1,19 @@
+{
+    "items": [
+        "wp-admin",
+        "phpmyadmin",
+        "db_root",
+        "uploads",
+        "private",
+        "www",
+        "ftp",
+        "user",
+        "images",
+        "hacked",
+        "db",
+        ".well-known",
+        ".ssh",
+        "node_modules",
+        ".config"
+    ]
+}

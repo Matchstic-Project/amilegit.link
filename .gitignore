@@ -1,0 +1,9 @@
+.DS_Store
+docker/mongo
+*.log
+node_modules
+.dynamodb
+.serverless
+.build
+working
+client/.env

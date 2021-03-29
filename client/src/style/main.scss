@@ -1,0 +1,210 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    background-color: #000;
+
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+
+    font-family: 'Poppins', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	font-size: var(--font-size-p);
+    font-weight: normal;
+    line-height: var(--line-height-p);
+
+    * {
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    img {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+    }
+
+    scrollbar-color: lightgray;
+}
+
+:root {
+    --padding-h-small: 8px;
+    --padding-h: 16px;
+    --padding-h-large: 24px;
+    --padding-v-small: 6px;
+    --padding-v: 12px;
+    --padding-v-large: 18px;
+
+    --border-radius: 10px;
+
+    --app-color: #e1a708;
+    --error-color: #ec6d6d;
+    --shadow-color: #25252583;
+    --card-color: #292828;
+    --input-color: #E5E5EA;
+    --button-color: #41414bd8;
+    --faded-text-color: rgba(229, 229, 234, 0.65);
+
+    --text-color: #E5E5EA;
+    --text-color-inverse: #15151A;
+    --subtitle-color: #C7C7CC;
+    --item-text-color: #AEAEB2;
+
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1rem;
+    --font-size-p: 1rem;
+    --font-size-tiny: 0.9rem;
+
+    --content-inset: var(--padding-h);
+    --content-inset: max(var(--padding-h), constant(safe-area-inset-left));
+    --content-inset: max(var(--padding-h), env(safe-area-inset-left));
+}
+
+h1 {
+    display: inline;
+    font-size: var(--font-size-h1);
+    font-weight: bold;
+    text-shadow: 0px 3px 15px var(--shadow-color);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: normal;
+    text-shadow: 0px 3px 15px var(--shadow-color);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: normal;
+}
+
+h4 {
+    display: inline;
+    font-size: var(--font-size-h4);
+    font-weight: normal;
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+    font-weight: normal;
+    color: var(--subtitle-color);
+}
+
+p {
+    font-size: var(--font-size-p);
+    font-weight: normal;
+    color: var(--faded-text-color);
+
+    &.bright {
+        color: var(--text-color);
+    }
+}
+
+button {
+    display: inline-block;
+    border: none;
+
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: var(--padding-v) var(--padding-h);
+    background: var(--button-color);
+    border-radius: 8px;
+    font-size: var(--font-size-h5);
+
+    min-height: 28px;
+    color: var(--text-color);
+
+    &:hover {
+        opacity: 0.75;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
+
+input {
+    padding: var(--padding-v) var(--padding-h);
+    border-radius: var(--border-radius);
+    background: var(--input-color);
+    color: var(--text-color-inverse);
+    border: solid 2px transparent;
+
+    font-size: var(--font-size-h5);
+    font-weight: normal;
+
+    &:focus {
+        outline: none;
+        border: solid 2px var(--app-color);
+    }
+}
+
+a {
+    text-decoration: none;
+    color: var(--app-color);
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+code {
+    width: fit-content;
+
+    font-family: 'Source Code Pro', monospace;
+    background: var(--button-color);
+    border-radius: var(--border-radius);
+
+    --card-padding: calc(var(--padding-v-small) / 2);
+    padding: var(--card-padding) var(--padding-h-small);
+
+    font-size: var(--font-size-tiny);
+
+    color: var(--text-color);
+}
+
+/* Handle screen size changes in a nice responsive manner */
+
+@media only screen and (min-width: 760px) {
+    :root {
+        --content-inset: 4vw;
+        --content-inset: max(4vw, constant(safe-area-inset-left));
+        --content-inset: max(4vw, env(safe-area-inset-left));
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    :root {
+        --content-inset: 8vw;
+        --content-inset: max(8vw, constant(safe-area-inset-left));
+        --content-inset: max(8vw, env(safe-area-inset-left));
+    }
+}
