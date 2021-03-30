@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.3",
     "loglevel": "^1.6.8",
+    "serverless": "^2.32.0",
     "serverless-http": "^2.6.1",
     "uuid": "^8.3.2",
     "valid-url": "^1.0.9"
@@ -38,7 +39,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "local": "serverless offline start --httpPort 8081 --noPrependStageInUrl",
+    "local": "serverless offline start --noPrependStageInUrl true --httpPort 8081",
     "deploy": "serverless deploy --stage prod",
     "test": "jest"
   }
