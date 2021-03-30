@@ -7,7 +7,7 @@ export interface NetworkParameter {
 
 export default class Network {
     // The base URL for the server-side
-    static base = 'https://api.amilegit.link/';
+    static base = process.env.NODE_ENV === 'development' ? 'http://localhost:8081/' : 'https://api.amilegit.link/';
 
     /**
      * Handles the request to the server
